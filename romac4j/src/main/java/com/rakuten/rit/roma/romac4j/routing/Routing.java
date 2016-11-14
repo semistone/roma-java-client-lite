@@ -172,7 +172,8 @@ public final class Routing extends Thread {
     private RoutingData getRoutingDump() {
         Connection con = null;
         RoutingData routingData = null;
-        Receiver rcv = new RoutingReceiver();
+
+        Receiver rcv = new RoutingReceiver(null);
         try {
             con = getConnection();
             con.write("routingdump bin");
@@ -194,7 +195,15 @@ public final class Routing extends Thread {
     
     private class RoutingReceiver extends Receiver {
         private byte[] value = null;
-        
+
+        RoutingReceiver(){
+           this.value = null;
+        }
+
+        RoutingReceiver(RoutingReceiver routingReceiver){
+            this();
+        }
+
         @Override
         public void receive(Connection con) throws TimeoutException, IOException, ParseException {
             int len = 0;

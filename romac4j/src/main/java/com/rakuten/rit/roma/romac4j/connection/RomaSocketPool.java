@@ -101,4 +101,8 @@ public class RomaSocketPool {
         log.info("returnConnection() : close connection");
         con.forceClose();
     }
+
+    public synchronized void setTimeout(int timeout) {
+        this.timeout = timeout;
+    }
 }

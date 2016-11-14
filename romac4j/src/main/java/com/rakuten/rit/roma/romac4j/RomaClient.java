@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
-
+import com.rakuten.rit.roma.romac4j.connection.RomaSocketPool;
 import org.apache.log4j.Logger;
 
 public class RomaClient extends ClientObject {
@@ -17,6 +17,11 @@ public class RomaClient extends ClientObject {
 
     public RomaClient(String nodeId) {
         super(nodeId);
+    }
+
+
+    public void setTimeout(int timeout) {
+        RomaSocketPool.getInstance().setTimeout(timeout);
     }
 
     public byte[] get(String key) throws IOException {
