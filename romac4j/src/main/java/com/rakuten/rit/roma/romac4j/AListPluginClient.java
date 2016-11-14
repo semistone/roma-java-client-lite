@@ -146,7 +146,7 @@ public class AListPluginClient extends ClientObject {
     }
     
     public boolean insert(String key, int index, byte[] value) throws IOException {
-        return sendCmdS("alist_insert", key, "" + index + " " + value.length, value).isStored();
+        return sendCmdS("alist_insert", key, index + " " + value.length, value).isStored();
     }
 
     public boolean insert(String key, int index, String value) throws IOException {
@@ -156,7 +156,8 @@ public class AListPluginClient extends ClientObject {
     public boolean sizedInsert(String key, int size, byte[] value)
             throws IOException {
         return sendCmdS("alist_sized_insert",
-                key, "" + size + " " + value.length, value).isStored();
+                key, size + " " + value.length, value).isStored();
+
     }
 
     public boolean sizedInsert(String key, int size, String value)
@@ -178,7 +179,7 @@ public class AListPluginClient extends ClientObject {
     public boolean swapAndSizedInsert(String key, int size, byte[] value)
             throws IOException {
         return sendCmdS("alist_swap_and_sized_insert",
-                key, "" + size + " " + value.length, value).isStored();
+                key, size + " " + value.length, value).isStored();
     }
   
     public boolean swapAndSizedInsert(String key, int size, String value)
@@ -211,7 +212,7 @@ public class AListPluginClient extends ClientObject {
     public boolean expiredSwapAndInsert(String key, int expt, byte[] value)
             throws IOException {
         return sendCmdS("alist_expired_swap_and_insert",
-                key, "" + expt + " " + value.length, value).isStored();
+                key, expt + " " + value.length, value).isStored();
     }
 
     public boolean expiredSwapAndInsert(String key, int expt, String value)
@@ -244,7 +245,7 @@ public class AListPluginClient extends ClientObject {
     public boolean expiredSwapAndSizedInsert(
             String key, int expt, int size, byte[] value) throws IOException {
         return sendCmdS("alist_expired_swap_and_sized_insert",
-                key, "" + expt + " " + size + " " + value.length, value).isStored();
+                key, expt + " " + size + " " + value.length, value).isStored();
     }
 
     public boolean expiredSwapAndSizedInsert(
@@ -310,7 +311,7 @@ public class AListPluginClient extends ClientObject {
     public boolean sizedPush(String key, int size, byte[] value)
             throws IOException {
         return sendCmdS("alist_sized_push",
-                key, "" + size + " " + value.length, value).isStored();
+                key, size + " " + value.length, value).isStored();
     }
 
     public boolean sizedPush(String key, int size, String value)
@@ -330,7 +331,7 @@ public class AListPluginClient extends ClientObject {
     public boolean swapAndSizedPush(String key, int size, byte[] value)
             throws IOException {
         return sendCmdS("alist_swap_and_sized_push",
-                key, "" + size + " " + value.length, value).isStored();
+                key, size + " " + value.length, value).isStored();
     }
     
     public boolean swapAndSizedPush(String key, int size, String value)
@@ -341,7 +342,7 @@ public class AListPluginClient extends ClientObject {
     public boolean expiredSwapAndPush(String key, int expt, byte[] value)
             throws IOException {
         return sendCmdS("alist_expired_swap_and_push",
-                key, "" + expt + " " + value.length, value).isStored();
+                key, expt + " " + value.length, value).isStored();
     }
     
     public boolean expiredSwapAndPush(String key, int expt, String value)
@@ -352,7 +353,7 @@ public class AListPluginClient extends ClientObject {
     public boolean expiredSwapAndSizedPush(
             String key, int expt, int size, byte[] value) throws IOException {
         return sendCmdS("alist_expired_swap_and_sized_push",
-                key, "" + expt + " " + size + " " + value.length, value).isStored();
+                key, expt + " " + size + " " + value.length, value).isStored();
     }
    
     public boolean expiredSwapAndSizedPush(
@@ -362,7 +363,7 @@ public class AListPluginClient extends ClientObject {
 
     public int updateAt(String key, int index, byte[] value)  throws IOException {
         String ret = sendCmdS("alist_update_at",
-                key, "" + index + " " + value.length, value).toString();
+                key, index + " " + value.length, value).toString();
         if(ret.equals("STORED")) return 1;
         else if(ret.equals("NOT_STORED")) return 0;
         else if(ret.equals("NOT_FOUND")) return -2;
